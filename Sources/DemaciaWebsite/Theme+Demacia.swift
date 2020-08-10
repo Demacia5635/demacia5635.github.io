@@ -19,25 +19,15 @@ extension Theme where Site == DemaciaWebsite {
                 .lang(context.site.language),
                 .head(for: index, on: context.site),
                 .body(
-                    .div(.class("navbar is-fixed-top"),
-                         .div(.class("has-text-centered logo-outer"),
-                              .figure(.style("max-width: 40rem;"),
-                                      .picture(.class("logo"),
-                                               .source(.srcset("/img/logo.webp")),
-                                               .img(.src("/img/logo.png"))
-                                      )
-                              ),
-                              .h1(.class("title is-1"), .style("text-transform: uppercase;"), .text("Demacia")),
-                              .h2(.class("subtitle is-2"), .text("Ness Ziona"))
-                         )
-                    ),
+                    .navbar(for: context, selectedSection: nil),
                     .section(.class("hero is-primary is-bold"),
                              .div(.class("hero-body px-0 py-0 is-block"),
                                   .slideshow()
                              )
                     ),
                     .section(.class("text container has-text-centered"), .contentBody(index.body)),
-                    .footer(for: context.site)
+                    .footer(for: context.site),
+                    .script(.src("/js/logoAnimation.js"))
                 )
             )
         }
@@ -46,13 +36,10 @@ extension Theme where Site == DemaciaWebsite {
             HTML(
                 .lang(context.site.language),
                 .head(for: section, on: context.site),
-                .body(
-                    .header(for: context, selectedSection: section.id),
-                    .wrapper(
-                        .h1(.text(section.title)),
-                        .itemList(for: section.items, on: context.site)
-                    ),
-                    .footer(for: context.site)
+                .body(.class("has-navbar-fixed-top"),
+                      .navbar(for: context, selectedSection: section.id),
+                      .section(.class("text container has-text-centered"), .contentBody(section.body)),
+                      .footer(for: context.site)
                 )
             )
         }
@@ -232,6 +219,35 @@ extension Node where Context == HTML.BodyContext {
                     )
                 )
             )
+        )
+    }
+    
+    static func navbar(for context: PublishingContext<DemaciaWebsite>, selectedSection: DemaciaWebsite.SectionID?) -> Node {
+        let sectionIDs = DemaciaWebsite.SectionID.allCases
+        
+        return .div(.class(selectedSection == nil ? "navbar is-fixed-top animate" : "navbar is-fixed-top"),
+                    .a(.href("/"),
+                        .div(.class("has-text-centered logo-outer"),
+                             .figure(.style("max-width: 40rem;"),
+                                     .picture(.class("logo"),
+                                              .source(.srcset("/img/logo.webp")),
+                                              .img(.src("/img/logo.png"))
+                                     )
+                             ),
+                             .h1(.class("title is-1"), .style("text-transform: uppercase;"), .text("Demacia")),
+                             .h2(.class("subtitle is-2"), .text("Ness Ziona"))
+                        )
+                    ),
+                    .div(.class("navbar-menu"), .id("navbar"),
+                         .div(.class("navbar-start"),
+                              .forEach(sectionIDs, { section in
+                                .a(.class(section == selectedSection ? "navbar-item is-active" : "navbar-item"),
+                                   .href(context.sections[section].path),
+                                   .text(context.sections[section].title)
+                                )
+                              })
+                         )
+                    )
         )
     }
     

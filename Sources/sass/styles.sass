@@ -6,9 +6,14 @@
 
 $purple: #522f9c
 $text: #161616
+$white: #fff
 
 $family-sans-serif: "Recursive", sans-serif
 $primary: $purple
+$navbar-item-color: darken($white, 20%)
+$navbar-item-hover-color: $white
+$navbar-item-hover-background-color: none
+$navbar-item-active-color: $white
 
 @import "bulma/utilities/_all"
 @import "bulma/base/_all"
@@ -20,65 +25,14 @@ $primary: $purple
 @import "bulma/layout/_all"
 @import "slides"
 
-@keyframes logo-start
-    0%
-        top: 50%
-        left: 50%
-        transform: scale(1) translateX(-50%) translateY(-50%)
-
-    100%
-        top: 1.5vw
-        left: 1.5vw
-        left: calc(1.5vw + env(safe-area-inset-left))
-        transform: scale(0.3) translateX(0) translateY(0)
-
-@keyframes logo-resize
-    0%
-        width: 50vh
-
-    100%
-        width: 50vw
-
-@keyframes center-to-left
-    0%
-        margin: 0 25%
-
-    100%
-        margin: 0
-
-@keyframes hide
-    0%
-        opacity: 1
-
-    100%
-        opacity: 0
-
-@keyframes show
-    0%
-        opacity: 0
-
-    100%
-        opacity: 1
-
-@keyframes collapse-navbar
-    0%
-        height: 100%
-        max-height: 100%
-        background-color: rgba($primary, 1)
-        -webkit-backdrop-filter: blur(0)
-        -moz-backdrop-filter: blur(0)
-        backdrop-filter: blur(0)
-
-    100%
-        height: calc(55vw * 0.3)
-        max-height: calc(45rem * 0.3)
-        background-color: rgba($primary, 0.8)
-        -webkit-backdrop-filter: blur(3rem)
-        -moz-backdrop-filter: blur(3rem)
-        backdrop-filter: blur(3rem)
-
 body
+    display: flex
+    min-height: 100vh
     font-variation-settings: "wght" 350, "CASL" 0, "slnt" 0, "MONO" 0, "CRSV" 1
+    flex-direction: column
+
+    &.has-navbar-fixed-top
+        padding-top: calc(55vw * 0.3)
 
 h1,
 h2,
@@ -99,34 +53,74 @@ h2
 
 .navbar
     position: absolute
-    background-color: rgba($primary, 1)
-    height: 100%
-    animation: 2s ease collapse-navbar forwards
-    animation-delay: 3s
+    height: calc(55vw * 0.3)
+    max-height: calc(45rem * 0.3)
+    background-color: rgba($primary, 0.8)
+    -webkit-backdrop-filter: blur(3rem)
+    -moz-backdrop-filter: blur(3rem)
+    backdrop-filter: blur(3rem)
     overflow: hidden
+    transition: 2s all
+    
+    &.animate
+        height: 100%
+        max-height: 100%
+        background-color: rgba($primary, 1)
+        -webkit-backdrop-filter: blur(0)
+        -moz-backdrop-filter: blur(0)
+        backdrop-filter: blur(0)
+
+        .navbar-menu
+            margin-top: -100%
+
+        .logo-outer
+            top: 50%
+            left: 50%
+            transform: scale(1) translateX(-50%) translateY(-50%)
+        
+            figure
+                width: 50vh
+    
+    &.fast
+        transition: 1s all
+        
+        .logo-outer
+            transition: 1s all
+            
+            figure
+                transition: 1s all
+        
+        .navbar-menu
+            transition: 1s all
+
+    .navbar-menu
+        margin-top: 0
+        margin-left: calc(55vw * 0.3)
+        transition: 2s all
+
+        .navbar-item
+            font-variation-settings: "wght" 400
 
     .logo-outer
         position: absolute
-        top: 50%
-        left: 50%
-        animation: 2s ease logo-start forwards
-        animation-delay: 3s
-        transform: translateX(-50%) translateY(-50%)
+        top: 1.5vw
+        left: 1.5vw
+        left: calc(1.5vw + env(safe-area-inset-left))
+        transform: scale(0.3) translateX(0) translateY(0)
         transform-origin: top left
         flex-direction: column
+        transition: 2s all
+        z-index: 1
 
         figure
-            width: 50vh
+            width: 50vw
             margin: 0 auto
-            animation: 2s ease logo-resize forwards
-            animation-delay: 3s
+            transition: 2s all
 
         h1,
         h2
             color: $white
             white-space: nowrap
-            // animation: 2s ease hide forwards
-            // animation-delay: 3s
 
         h1
             font-size: 10vh
@@ -152,46 +146,33 @@ footer
             margin: 0 0.5rem
 
 @media screen and ( min-width: 768px )
-    @keyframes logo-start
-        0%
-            top: 50%
-            left: 50%
-            transform: scale(1) translateX(-50%) translateY(-50%)
+    body
+        &.has-navbar-fixed-top
+            padding-top: calc(45rem * 0.2)
+    
+    .navbar
+        height: calc(55vw * 0.2)
+        max-height: calc(45rem * 0.2)
+        background-color: rgba($primary, 0.8)
+        -webkit-backdrop-filter: blur(3rem)
+        -moz-backdrop-filter: blur(3rem)
+        backdrop-filter: blur(3rem)
 
-        100%
+        .navbar-menu
+            margin-left: calc(55rem * 0.2)
+
+        .logo-outer
             top: 1vw
             left: 1.5vw
             left: calc(1.5vw + env(safe-area-inset-left))
             transform: scale(0.2) translateX(0) translateY(0)
 
-    @keyframes collapse-navbar
-        0%
-            height: 100%
-            max-height: 100%
-            background-color: rgba($primary, 1)
-            -webkit-backdrop-filter: blur(0)
-            -moz-backdrop-filter: blur(0)
-            backdrop-filter: blur(0)
-
-        100%
-            height: calc(55vw * 0.2)
-            max-height: calc(45rem * 0.2)
-            background-color: rgba($primary, 0.8)
-            -webkit-backdrop-filter: blur(3rem)
-            -moz-backdrop-filter: blur(3rem)
-            backdrop-filter: blur(3rem)
-
     section.text
         max-width: 50vw
 
 @media screen and ( min-width: 1440px )
-    @keyframes logo-start
-        0%
-            top: 50%
-            left: 50%
-            transform: scale(1) translateX(-50%) translateY(-50%)
-
-        100%
+    .navbar
+        .logo-outer
             top: 0.8rem
             left: 1.5vw
             left: calc(1.5vw + env(safe-area-inset-left))
