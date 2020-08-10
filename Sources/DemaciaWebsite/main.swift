@@ -7,7 +7,7 @@ import SassPublishPlugin
 struct DemaciaWebsite: Website {
     enum SectionID: String, WebsiteSectionID {
         // Add the sections that you want your website to contain here:
-        case aboutUs
+        case about
         case sponsorship
     }
     struct ItemMetadata: WebsiteItemMetadata {
