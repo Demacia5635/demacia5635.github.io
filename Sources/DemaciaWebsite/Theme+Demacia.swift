@@ -36,9 +36,7 @@ extension Theme where Site == DemaciaWebsite {
                                   .slideshow()
                              )
                     ),
-                    .section(.class("text container has-text-centered"),
-                         index.content.body.node
-                    ),
+                    .section(.class("text container has-text-centered"), .contentBody(index.body)),
                     .footer(for: context.site)
                 )
             )
