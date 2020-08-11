@@ -132,10 +132,14 @@ section.text
     width: 90%    
 
 footer
+    text-align: center
+    color: $white
+    background-color: $primary
     margin-top: 3rem
+    padding: 3rem 1.5rem
     
     a
-        color: #fff
+        color: $white
     
     .social-media
         margin-top: 1rem
@@ -153,17 +157,12 @@ footer
     .navbar
         height: calc(55vw * 0.2)
         max-height: calc(45rem * 0.2)
-        background-color: rgba($primary, 0.8)
-        -webkit-backdrop-filter: blur(3rem)
-        -moz-backdrop-filter: blur(3rem)
-        backdrop-filter: blur(3rem)
 
         .navbar-menu
             margin-left: calc(55rem * 0.2)
 
         .logo-outer
             top: 1vw
-            left: 1.5vw
             left: calc(1.5vw + env(safe-area-inset-left))
             transform: scale(0.2) translateX(0) translateY(0)
 
@@ -174,6 +173,4 @@ footer
     .navbar
         .logo-outer
             top: 0.8rem
-            left: 1.5vw
             left: calc(1.5vw + env(safe-area-inset-left))
-            transform: scale(0.2) translateX(0) translateY(0)

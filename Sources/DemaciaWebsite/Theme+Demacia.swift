@@ -278,20 +278,14 @@ extension Node where Context == HTML.BodyContext {
     
     static func footer(for site: DemaciaWebsite) -> Node {
         .footer(
-            .section(.class("hero is-primary has-text-centered"),
-                     .div(.class("hero-body"),
-                          .div(.class("container"),
-                               .p("Demacia FRC 2020"),
-                               .div(.class("social-media"),
-                                    .a(.href("https://youtube.com/c/NoamAlffasy"), .youtubeIcon()),
-                                    .a(.href("https://instagram.com/NoamAlffasy"), .instagramIcon()),
-                                    .a(.href("https://facebook.com/NoamAlffasy"), .facebookIcon()),
-                                    .a(.href("https://github.com/noamalffasy"), .githubIcon()),
-                                    .a(.href("mailto:demacia5635@gmail.com"), .mailIcon())
-                               )
-                          )
-                     )
-            )
+                .p("Demacia FRC 2020"),
+                .div(.class("social-media"),
+                     .a(.href("https://youtube.com/c/NoamAlffasy"), .youtubeIcon()),
+                     .a(.href("https://instagram.com/NoamAlffasy"), .instagramIcon()),
+                     .a(.href("https://facebook.com/NoamAlffasy"), .facebookIcon()),
+                     .a(.href("https://github.com/noamalffasy"), .githubIcon()),
+                     .a(.href("mailto:demacia5635@gmail.com"), .mailIcon())
+                )
         )
     }
 }
