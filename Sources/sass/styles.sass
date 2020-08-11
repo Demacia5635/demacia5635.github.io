@@ -12,12 +12,10 @@ $family-sans-serif: "Recursive", sans-serif
 $primary: $purple
 $navbar-item-color: darken($white, 20%)
 $navbar-item-hover-color: $white
-$navbar-item-hover-background-color: none
 $navbar-item-active-color: $white
 
 @import "bulma/utilities/_all"
 @import "bulma/base/_all"
-@import "bulma/components/navbar"
 @import "bulma/helpers/_all"
 
 @import "slides"
@@ -47,15 +45,21 @@ h2
     position: relative
 
 .navbar
-    position: absolute
+    position: fixed
     height: calc(55vw * 0.3)
     max-height: calc(45rem * 0.3)
     background-color: rgba($primary, 0.8)
     -webkit-backdrop-filter: blur(3rem)
     -moz-backdrop-filter: blur(3rem)
     backdrop-filter: blur(3rem)
-    overflow: hidden
     transition: 2s all
+    overflow: hidden
+
+    top: 0
+    left: 0
+    right: 0
+
+    z-index: 30
 
     &.animate
         height: 100%
@@ -89,12 +93,28 @@ h2
             transition: 1s all
 
     .navbar-menu
+        display: none
         margin-top: 0
         margin-left: calc(55vw * 0.3)
         transition: 2s all
 
         .navbar-item
+            display: block
+            position: relative
+            color: $navbar-item-color
+            line-height: 1.5
+            padding: 0.5rem 0.75rem
             font-variation-settings: "wght" 400
+            flex-grow: 0
+            flex-shrink: 0
+            cursor: pointer
+            transition: all 0.3s
+
+            &:hover
+                color: $navbar-item-hover-color
+
+            &.is-active
+                color: $navbar-item-active-color
 
     .logo-outer
         position: absolute
@@ -165,6 +185,27 @@ footer
 
     section.text
         max-width: 50vw
+
+@media screen and ( min-width: 1024px )
+    .navbar
+        display: flex
+        align-items: stretch
+
+        .navbar-menu
+            display: flex
+            align-items: stretch
+            flex-grow: 1
+            flex-shrink: 0
+
+            .navbar-start
+                display: flex
+                margin-right: auto
+                align-items: stretch
+                justify-content: flex-start
+
+                .navbar-item
+                    display: flex
+                    align-items: center
 
 @media screen and ( min-width: 1440px )
     .navbar
