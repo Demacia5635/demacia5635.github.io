@@ -5,6 +5,7 @@
 //  Created by Noam Alffasy on 12/08/2020.
 //
 
+import Foundation
 import Publish
 import Files
 
