@@ -46,4 +46,3 @@ extension PublishingStep where Site == DemaciaWebsite {
         }
     }
 }
-

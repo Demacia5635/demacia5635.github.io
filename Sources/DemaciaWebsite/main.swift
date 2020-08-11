@@ -1,6 +1,7 @@
 import Foundation
 import Publish
 import Plot
+import Files
 import SassPublishPlugin
 
 // This type acts as the configuration for your website.
@@ -35,5 +36,9 @@ try DemaciaWebsite().publish(using: [
             cssFilePath: "styles.css",
             compressed: true
         )
-    )
+    ),
+    .inlineCSS(),
+    .removeUnusedCSS(whitelist: ["*fast*", "*animate*", "*control*"]),
+    .optimizeImages(),
+    .uglifyJS()
 ])
