@@ -45,6 +45,7 @@ h2
     position: relative
 
 .navbar
+    display: flex
     position: fixed
     height: calc(55vw * 0.3)
     max-height: calc(45rem * 0.3)
@@ -69,7 +70,7 @@ h2
         backdrop-filter: blur(0)
 
         .navbar-menu
-            margin-top: -100%
+            margin-top: calc(-100vh - 2rem)
 
         .logo-outer
             top: 50%
@@ -115,7 +116,6 @@ h2
 
         figure
             width: 50vw
-            margin: 0 auto
 
         h1,
         h2
@@ -129,9 +129,15 @@ h2
             font-size: 5vh
 
     .navbar-menu
-        display: none
+        display: flex
         margin-top: 0
-        margin-left: calc(55vw * 0.3)
+        margin-left: calc(1.5vw + 50vw * 0.3 + 0.75rem)
+        margin-left: calc(1.5vw + env(safe-area-inset-left) + 50vw * 0.3 + 0.75rem)
+        align-items: center
+        margin-right: auto
+        justify-content: flex-start
+        flex-grow: 1
+        flex-shrink: 0
 
         .navbar-item
             position: relative
@@ -184,40 +190,22 @@ footer
         height: calc(55vw * 0.2)
         max-height: calc(45rem * 0.2)
 
-        .navbar-menu
-            margin-left: calc(55rem * 0.2)
-
         .logo-outer
             top: 1vw
-            left: calc(1.5vw + env(safe-area-inset-left))
             transform: scale(0.2) translateX(0) translateY(0)
+
+        .navbar-menu
+            margin-left: calc(1.5vw + 50vw * 0.2 + 0.75rem)
+            margin-left: calc(1.5vw + env(safe-area-inset-left) + 50vw * 0.2 + 0.75rem)
 
     section.text
         max-width: 50vw
-
-@media screen and ( min-width: 1024px )
-    .navbar
-        display: flex
-        align-items: stretch
-
-        .navbar-menu
-            display: flex
-            align-items: stretch
-            flex-grow: 1
-            flex-shrink: 0
-
-            .navbar-start
-                display: flex
-                margin-right: auto
-                align-items: center
-                justify-content: flex-start
-
-                .navbar-item
-                    display: flex
-                    align-items: center
 
 @media screen and ( min-width: 1440px )
     .navbar
         .logo-outer
             top: 0.8rem
-            left: calc(1.5vw + env(safe-area-inset-left))
+
+        .navbar-menu
+            margin-left: calc(1.5vw + 40rem * 0.2 + 0.75rem)
+            margin-left: calc(1.5vw + env(safe-area-inset-left) + 40rem * 0.2 + 0.75rem)
