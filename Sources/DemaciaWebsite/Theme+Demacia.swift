@@ -225,7 +225,7 @@ extension Node where Context == HTML.BodyContext {
     static func navbar(for context: PublishingContext<DemaciaWebsite>, selectedSection: DemaciaWebsite.SectionID?) -> Node {
         let sectionIDs = DemaciaWebsite.SectionID.allCases
         
-        return .div(.class(selectedSection == nil ? "navbar is-fixed-top animate" : "navbar is-fixed-top"),
+        return .div(.class(selectedSection == nil ? "navbar is-fixed-top animate-start" : "navbar is-fixed-top"),
                     .a(.href("/"),
                         .div(.class("has-text-centered logo-outer"),
                              .figure(.style("max-width: 40rem;"),

@@ -23,7 +23,7 @@ $navbar-item-active-color: $white
 body
     display: flex
     min-height: 100vh
-    font-variation-settings: "wght" 350, "CASL" 0, "slnt" 0, "MONO" 0, "CRSV" 1
+    font-variation-settings: "wght" 400, "CASL" 0, "slnt" 0, "MONO" 0, "CRSV" 1
     flex-direction: column
 
     &.has-navbar-fixed-top
@@ -36,7 +36,7 @@ h2,
     font-variation-settings: "wght" 500, "CASL" 1, "slnt" 0, "MONO" 0, "CRSV" 1
 
 h1
-    font-size: 4rem
+    font-size: 3rem
 
 h2
     font-size: 2rem
@@ -52,7 +52,6 @@ h2
     -webkit-backdrop-filter: blur(3rem)
     -moz-backdrop-filter: blur(3rem)
     backdrop-filter: blur(3rem)
-    transition: 2s all
     overflow: hidden
 
     top: 0
@@ -61,7 +60,7 @@ h2
 
     z-index: 30
 
-    &.animate
+    &.animate-start
         height: 100%
         max-height: 100%
         background-color: rgba($primary, 1)
@@ -80,6 +79,18 @@ h2
             figure
                 width: 50vh
 
+    &.animate
+        transition: 2s all
+
+        .logo-outer
+            transition: 2s all
+
+            figure
+                transition: 2s all
+
+        .navbar-menu
+            transition: 2s all
+
     &.fast
         transition: 1s all
 
@@ -92,30 +103,6 @@ h2
         .navbar-menu
             transition: 1s all
 
-    .navbar-menu
-        display: none
-        margin-top: 0
-        margin-left: calc(55vw * 0.3)
-        transition: 2s all
-
-        .navbar-item
-            display: block
-            position: relative
-            color: $navbar-item-color
-            line-height: 1.5
-            padding: 0.5rem 0.75rem
-            font-variation-settings: "wght" 400
-            flex-grow: 0
-            flex-shrink: 0
-            cursor: pointer
-            transition: all 0.3s
-
-            &:hover
-                color: $navbar-item-hover-color
-
-            &.is-active
-                color: $navbar-item-active-color
-
     .logo-outer
         position: absolute
         top: 1.5vw
@@ -124,13 +111,11 @@ h2
         transform: scale(0.3) translateX(0) translateY(0)
         transform-origin: top left
         flex-direction: column
-        transition: 2s all
         z-index: 1
 
         figure
             width: 50vw
             margin: 0 auto
-            transition: 2s all
 
         h1,
         h2
@@ -142,6 +127,30 @@ h2
 
         h2
             font-size: 5vh
+
+    .navbar-menu
+        display: none
+        margin-top: 0
+        margin-left: calc(55vw * 0.3)
+
+        .navbar-item
+            position: relative
+            color: $navbar-item-color
+            line-height: 1.5
+            margin: 0 0.75rem
+            font-variation-settings: "wght" 400
+            flex-grow: 0
+            flex-shrink: 0
+            cursor: pointer
+            transition: color 0.3s
+
+            &:hover
+                color: $navbar-item-hover-color
+                font-variation-settings: "wght" 800, 'CASL' 1
+
+            &.is-active
+                color: $navbar-item-active-color
+                font-variation-settings: "wght" 800, 'CASL' 1
 
 section.text
     width: 90%
@@ -200,7 +209,7 @@ footer
             .navbar-start
                 display: flex
                 margin-right: auto
-                align-items: stretch
+                align-items: center
                 justify-content: flex-start
 
                 .navbar-item
