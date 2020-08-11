@@ -37,18 +37,7 @@ const slideshows = document.querySelectorAll(".slideshow");
 
 slideshows.forEach(slideshow => {
     const slides = slideshow.querySelectorAll(".slides .slide");
-    const controls = Array.from(slides).map((_, i) => {
-        const control = document.createElement("div");
-
-        if (i === currentSlide) {
-            control.classList.add("active");
-        }
-
-        control.classList.add("control");
-        slideshow.querySelector(".controls").appendChild(control);
-
-        return control;
-    });
+    const controls = slideshow.querySelectorAll(".controls .control")
 
     if (!slides[currentSlide].classList.contains("active")) {
         autoPlay(slideshow);

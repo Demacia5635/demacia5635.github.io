@@ -1,8 +1,6 @@
 @charset "utf-8"
 
-@font-face
-    font-family: 'Recursive'
-    src: url('/fonts/Recursive.ttf')
+@import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap');
 
 $purple: #522f9c
 $text: #161616
@@ -24,10 +22,8 @@ body
     display: flex
     min-height: 100vh
     font-variation-settings: "wght" 400, "CASL" 0, "slnt" 0, "MONO" 0, "CRSV" 1
+    padding-top: calc(55vw * 0.3)
     flex-direction: column
-
-    &.has-navbar-fixed-top
-        padding-top: calc(55vw * 0.3)
 
 h1,
 h2,
@@ -78,7 +74,14 @@ h2
             transform: scale(1) translateX(-50%) translateY(-50%)
 
             figure
-                width: 50vh
+                width: 40vh
+                height: 40vh
+
+            h1
+                font-size: 8vh
+
+            h2
+                font-size: 5vh
 
     &.animate
         transition: 2s all
@@ -86,7 +89,9 @@ h2
         .logo-outer
             transition: 2s all
 
-            figure
+            figure,
+            h1,
+            h2
                 transition: 2s all
 
         .navbar-menu
@@ -98,7 +103,9 @@ h2
         .logo-outer
             transition: 1s all
 
-            figure
+            figure,
+            h1,
+            h2
                 transition: 1s all
 
         .navbar-menu
@@ -116,6 +123,13 @@ h2
 
         figure
             width: 50vw
+            height: 50vw
+            max-width: 40rem
+            max-height: 40rem
+
+            picture
+                img
+                    height: 100%
 
         h1,
         h2
@@ -123,10 +137,10 @@ h2
             white-space: nowrap
 
         h1
-            font-size: 10vh
+            font-size: 10vw
 
         h2
-            font-size: 5vh
+            font-size: 5vw
 
     .navbar-menu
         display: flex
@@ -183,8 +197,7 @@ footer
 
 @media screen and ( min-width: 768px )
     body
-        &.has-navbar-fixed-top
-            padding-top: calc(45rem * 0.2)
+        padding-top: calc(45rem * 0.2)
 
     .navbar
         height: calc(55vw * 0.2)

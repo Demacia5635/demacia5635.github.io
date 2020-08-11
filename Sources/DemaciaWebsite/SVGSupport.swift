@@ -33,6 +33,10 @@ extension Node where Context == HTML.SVGContext {
         .attribute(named: "xmlns", value: xmlns)
     }
     
+    static func title(_ text: String) -> Self {
+        .element(named: "title", nodes: [.text(text)])
+    }
+    
     static func path(_ attributes: Attribute<HTML.PathContext>...) -> Self {
         .element(named: "path", attributes: attributes)
     }
