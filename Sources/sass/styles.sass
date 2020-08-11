@@ -17,12 +17,9 @@ $navbar-item-active-color: $white
 
 @import "bulma/utilities/_all"
 @import "bulma/base/_all"
-@import "bulma/elements/_all"
-@import "bulma/form/_all"
-@import "bulma/components/_all"
-@import "bulma/grid/_all"
+@import "bulma/components/navbar"
 @import "bulma/helpers/_all"
-@import "bulma/layout/_all"
+
 @import "slides"
 
 body
@@ -39,9 +36,6 @@ h2,
 .title
     color: $primary
     font-variation-settings: "wght" 500, "CASL" 1, "slnt" 0, "MONO" 0, "CRSV" 1
-
-.title.is-1
-    font-size: 7vw
 
 h1
     font-size: 4rem
@@ -62,7 +56,7 @@ h2
     backdrop-filter: blur(3rem)
     overflow: hidden
     transition: 2s all
-    
+
     &.animate
         height: 100%
         max-height: 100%
@@ -78,19 +72,19 @@ h2
             top: 50%
             left: 50%
             transform: scale(1) translateX(-50%) translateY(-50%)
-        
+
             figure
                 width: 50vh
-    
+
     &.fast
         transition: 1s all
-        
+
         .logo-outer
             transition: 1s all
-            
+
             figure
                 transition: 1s all
-        
+
         .navbar-menu
             transition: 1s all
 
@@ -130,7 +124,9 @@ h2
             font-size: 5vh
 
 section.text
-    width: 90%    
+    width: 90%
+    margin: 0 auto
+    flex: 1 1 0
 
 footer
     text-align: center
@@ -138,13 +134,13 @@ footer
     background-color: $primary
     margin-top: 3rem
     padding: 3rem 1.5rem
-    
+
     a
         color: $white
-    
+
     .social-media
         margin-top: 1rem
-        
+
         svg
             width: 2rem
             height: 2rem
@@ -154,7 +150,7 @@ footer
     body
         &.has-navbar-fixed-top
             padding-top: calc(45rem * 0.2)
-    
+
     .navbar
         height: calc(55vw * 0.2)
         max-height: calc(45rem * 0.2)
