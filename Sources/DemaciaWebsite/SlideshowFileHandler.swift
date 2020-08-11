@@ -25,7 +25,7 @@ struct SlideshowFileHandler {
 }
 
 private extension File {
-    private static let imageFileExtensions: Set<String> = ["png", "jpg", "jpeg"]
+    private static let imageFileExtensions: Set<String> = ["png", "jpg", "jpeg", "webp"]
     
     var isImage: Bool {
         self.extension.map(File.imageFileExtensions.contains) ?? false
