@@ -14,9 +14,9 @@ struct DemaciaWebsite: Website {
         // Add any site-specific metadata that you want to use here.
     }
     // Update these properties to configure your website:
-    var url = URL(string: "https://your-website-url.com")!
-    var name = "DemaciaWebsite"
-    var description = "A description of DemaciaWebsite"
+    var url = URL(string: "https://demacia5635.github.io/")!
+    var name = "Demacia"
+    var description = "The Demacia#5635 FRC team website"
     var language: Language { .english }
     var imagePath: Path? { "logos/logo.png" }
     var favicon: Favicon? { .init(path: "favicon.png") }
@@ -39,5 +39,6 @@ try DemaciaWebsite().publish(using: [
     .inlineCSS(),
     .removeUnusedCSS(whitelist: ["*fast*", "*animate*", "*control*"]),
     .optimizeImages(),
-    .uglifyJS()
+    .uglifyJS(),
+    .deploy(using: .gitHubPages("Demacia5635/demacia5635.github.io", source: .ghPages, useSSH: false))
 ])
