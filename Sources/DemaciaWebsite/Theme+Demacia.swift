@@ -165,6 +165,7 @@ extension Node where Context == HTML.DocumentContext {
             .encoding(.utf8),
             .siteName(site.name),
             .url(site.url(for: location)),
+            .link(.rel(.preconnect), .href("https://fonts.gstatic.com")),
             .title(title),
             .description(description),
             .twitterCardType(location.imagePath == nil ? .summary : .summaryLargeImage),
