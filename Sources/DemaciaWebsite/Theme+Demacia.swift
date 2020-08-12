@@ -190,7 +190,7 @@ extension Node where Context == HTML.BodyContext {
                   .forEach(slides) { slide in
                     let className = slides.firstIndex(of: slide) == 0 ? "slide active" : "slide"
                     
-                    return .image(for: context, at: slide, class: className, alt: "Slideshow")
+                    return .image(for: context, at: slide, widthPercentageOnPage: 100, class: className, alt: "Slideshow")
                   }
              ),
              .div(.class("controls"),
@@ -237,7 +237,7 @@ extension Node where Context == HTML.BodyContext {
                     .a(.href("/"),
                         .div(.class("has-text-centered logo-outer"),
                              .figure(
-                                .image(for: context, at: "/img/logo.png", class: "logo", alt: "Demacia#5635")
+                                .image(for: context, at: "/img/logo.png", widthPercentageOnPage: 50, class: "logo", alt: "Demacia#5635")
                              ),
                              .h1(.class("title is-1"), .style("text-transform: uppercase;"), .text("Demacia")),
                              .h2(.class("subtitle is-2"), .text("Ness Ziona"))
@@ -256,11 +256,13 @@ extension Node where Context == HTML.BodyContext {
         )
     }
     
-    static func image(for context: PublishingContext<DemaciaWebsite>, at filePath: String, class className: String, alt: String = "") -> Node {
+    static func image(for context: PublishingContext<DemaciaWebsite>, at filePath: String, widthPercentageOnPage: Int, class className: String = "", alt: String = "") -> Node {
         let fileExt = filePath.split(separator: ".").last!
         let fileNoExtPath = filePath.replacingOccurrences(of: "." + fileExt, with: "")
         let screenSizes = [768, 1024, 1216, 1408]
         let srcset = screenSizes.map { "\(fileNoExtPath)-\($0)px.webp \($0)w" }.joined(separator: ", ")
+        
+        images.append(Image(path: filePath, width: widthPercentageOnPage))
         
         return .picture(.class(className),
                         .source(.srcset(srcset), .type("image/webp")),
