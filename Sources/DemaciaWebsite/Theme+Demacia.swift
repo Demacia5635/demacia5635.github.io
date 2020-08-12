@@ -169,6 +169,7 @@ extension Node where Context == HTML.DocumentContext {
             .twitterCardType(location.imagePath == nil ? .summary : .summaryLargeImage),
             .forEach(stylesheetPaths, { .stylesheet($0) }),
             .meta(.name("viewport"), .content("initial-scale=1, viewport-fit=cover")),
+            .base(.href(site.url.absoluteString)),
             .unwrap(site.favicon, { .favicon($0) }),
             .unwrap(location.imagePath ?? site.imagePath, { path in
                 let url = site.url(for: path)
