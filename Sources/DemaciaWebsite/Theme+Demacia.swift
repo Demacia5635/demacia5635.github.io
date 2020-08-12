@@ -189,11 +189,7 @@ extension Node where Context == HTML.BodyContext {
                   .forEach(slides) { slide in
                     let className = slides.firstIndex(of: slide) == 0 ? "slide active" : "slide"
                     
-                    do {
-                        return try .image(for: context, of: try context.outputFile(at: Path(slide)), class: className, alt: "Slideshow")
-                    } catch {
-                        return .img(.class(className), .src(slide), .alt("Slideshow"))
-                    }
+                    return .image(for: context, at: slide, class: className, alt: "Slideshow")
                   }
              ),
              .div(.class("controls"),
@@ -240,10 +236,7 @@ extension Node where Context == HTML.BodyContext {
                     .a(.href("/"),
                         .div(.class("has-text-centered logo-outer"),
                              .figure(
-                                     .picture(.class("logo"),
-                                              .source(.srcset("/img/logo.webp")),
-                                              .img(.src("/img/logo.png"), .alt("Demacia#5635"))
-                                     )
+                                .image(for: context, at: "/img/logo.png", class: "logo", alt: "Demacia#5635")
                              ),
                              .h1(.class("title is-1"), .style("text-transform: uppercase;"), .text("Demacia")),
                              .h2(.class("subtitle is-2"), .text("Ness Ziona"))
@@ -262,20 +255,15 @@ extension Node where Context == HTML.BodyContext {
         )
     }
     
-    static func image(for context: PublishingContext<DemaciaWebsite>, of file: File, class className: String, alt: String = "") throws -> Node {
-        let output = try context.folder(at: "Output")
-        let filePath = file.path(relativeTo: output)
-        let fileNoExtPath = filePath.replacingOccurrences(of: "." + file.extension!, with: "")
-        let sizes = [768, 1024, 1216, 1408]
+    static func image(for context: PublishingContext<DemaciaWebsite>, at filePath: String, class className: String, alt: String = "") -> Node {
+        let fileExt = filePath.split(separator: ".").last!
+        let fileNoExtPath = filePath.replacingOccurrences(of: "." + fileExt, with: "")
+        let screenSizes = [768, 1024, 1216, 1408]
+        let srcset = screenSizes.map { "\(fileNoExtPath)-\($0)px.webp \($0)w" }.joined(separator: ", ")
         
         return .picture(.class(className),
-                        .forEach(sizes) { size in
-                            let srcset = sizes.map { "\(fileNoExtPath)-\($0)px.webp \($0)w" }.joined(separator: ", ")
-                            
-                            return .source(.srcset(srcset))
-                        },
-                        .source(.srcset(fileNoExtPath + ".webp")),
-                        .img(.src(fileNoExtPath + ".jpg"), .alt(alt))
+                        .source(.srcset(srcset), .type("image/webp")),
+                        .img(.src(fileExt == "png" ? filePath : fileNoExtPath + ".jpg"), .alt(alt))
         )
     }
     
