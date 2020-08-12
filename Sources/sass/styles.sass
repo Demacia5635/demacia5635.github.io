@@ -197,7 +197,8 @@ footer
 
 @media screen and ( min-width: 768px )
     body
-        padding-top: calc(45rem * 0.2)
+        // Abusing the fact that CSS is case insensitive whereas SASS isn't
+        padding-top: MIN(calc(55vw * 0.2), calc(45rem * 0.2))
 
     .navbar
         height: calc(55vw * 0.2)
