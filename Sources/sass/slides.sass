@@ -3,6 +3,7 @@
   width: 100%
   // height: calc(100vh - (4rem + 2 * 0.5rem + 1rem * 2))
   padding-bottom: 56.25%
+  overflow: hidden
 
   .slides
     width: 100%
@@ -11,15 +12,13 @@
     .slide
       img
         position: absolute
-        height: 100%
-        width: 100%
-        background-repeat: no-repeat
-        background-size: cover
+        min-height: 100%
         opacity: 0
         top: 0
         left: 0
         right: 0
         bottom: 0
+        object-fit: cover
         transition: all 0.3s
 
       &.active
