@@ -5,6 +5,7 @@
 //  Created by Noam Alffasy on 09/08/2020.
 //
 
+import Foundation
 import Publish
 import Plot
 import Files
@@ -260,12 +261,14 @@ extension Node where Context == HTML.BodyContext {
         let fileExt = filePath.split(separator: ".").last!
         let fileNoExtPath = filePath.replacingOccurrences(of: "." + fileExt, with: "")
         let screenSizes = [768, 1024, 1216, 1408]
-        let srcset = screenSizes.map { "\(fileNoExtPath)-\($0)px.webp \($0)w" }.joined(separator: ", ")
+        let fileSizes = screenSizes.map { Int(round(Double($0 * widthPercentageOnPage) * 0.01)) }
+        let srcset = screenSizes.enumerated().map { "\(fileNoExtPath)-\($1)px.webp \(fileSizes[$0])w" }.joined(separator: ", ")
+        let sizes = screenSizes.enumerated().map { screenSizes.last == $1 ? "\(widthPercentageOnPage)vw": "(max-width: \($1)px) \(widthPercentageOnPage)vw" }.joined(separator: ", ")
         
         images.append(Image(path: filePath, width: widthPercentageOnPage))
         
         return .picture(.class(className),
-                        .source(.srcset(srcset), .type("image/webp")),
+                        .source(.srcset(srcset), .sizes(sizes), .type("image/webp")),
                         .img(.src(fileExt == "png" ? filePath : fileNoExtPath + ".jpg"), .alt(alt))
         )
     }

@@ -31,14 +31,14 @@ extension PublishingStep where Site == DemaciaWebsite {
                 
                 if file.extension! != "webp" {
                     sizes.forEach { size in
-                        shell("cwebp \(file.path) -resize \(round(Double(size) * Double(image.width) * 0.01)) 0 -o \(fileNoExt)-\(size)px.webp")
+                        shell("cwebp \(file.path) -resize \(round(Double(size * image.width) * 0.01)) 0 -o \(fileNoExt)-\(size)px.webp")
                     }
                     shell("cwebp \(file.path) -o \(fileNoExt).webp")
                 } else {
                     shell("dwebp \(file.path) -o \(fileNoExt).png")
                     shell("imagemin \(file.path) -p=jpegtran > \(fileNoExt).jpg")
                     sizes.forEach { size in
-                        shell("cwebp \(fileNoExt).png -resize \(round(Double(size) * Double(image.width) * 0.01)) 0 -o \(fileNoExt)-\(size)px.webp")
+                        shell("cwebp \(fileNoExt).png -resize \(round(Double(size * image.width) * 0.01)) 0 -o \(fileNoExt)-\(size)px.webp")
                     }
                 }
             }
