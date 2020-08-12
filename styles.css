@@ -785,6 +785,6 @@ footer .social-media { margin-top: 1rem; }
 
 footer .social-media svg { width: 2rem; height: 2rem; margin: 0 0.5rem; }
 
-@media screen and (min-width: 768px) { body { padding-top: calc(45rem * 0.2); } .navbar { height: calc(55vw * 0.2); max-height: calc(45rem * 0.2); } .navbar .logo-outer { top: 1vw; transform: scale(0.2) translateX(0) translateY(0); } .navbar .navbar-menu { margin-left: calc(1.5vw + 50vw * 0.2 + 0.75rem); margin-left: calc(1.5vw + env(safe-area-inset-left) + 50vw * 0.2 + 0.75rem); } section.text { max-width: 50vw; } }
+@media screen and (min-width: 768px) { body { padding-top: MIN(calc(55vw * 0.2), calc(45rem * 0.2)); } .navbar { height: calc(55vw * 0.2); max-height: calc(45rem * 0.2); } .navbar .logo-outer { top: 1vw; transform: scale(0.2) translateX(0) translateY(0); } .navbar .navbar-menu { margin-left: calc(1.5vw + 50vw * 0.2 + 0.75rem); margin-left: calc(1.5vw + env(safe-area-inset-left) + 50vw * 0.2 + 0.75rem); } section.text { max-width: 50vw; } }
 
 @media screen and (min-width: 1440px) { .navbar .logo-outer { top: 0.8rem; } .navbar .navbar-menu { margin-left: calc(1.5vw + 40rem * 0.2 + 0.75rem); margin-left: calc(1.5vw + env(safe-area-inset-left) + 40rem * 0.2 + 0.75rem); } }
