@@ -1,7 +1,6 @@
 import Foundation
 import Publish
 import Plot
-import Files
 import SassPublishPlugin
 
 // This type acts as the configuration for your website.
