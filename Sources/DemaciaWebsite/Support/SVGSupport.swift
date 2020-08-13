@@ -12,6 +12,26 @@ extension HTML {
     enum PathContext {}
 }
 
+enum HTMLPathFillRule: String {
+    case nonZero = "nonzero"
+    case evenOdd = "evenodd"
+    case inherit = "inherit"
+}
+
+enum HTMLPathStrokeLineCap: String {
+    case butt = "butt"
+    case round = "round"
+    case square = "square"
+}
+
+enum HTMLPathStrokeLineJoin: String {
+    case arcs = "arcs"
+    case bevel = "bevel"
+    case miter = "miter"
+    case miterClip = "miter-clip"
+    case round = "round"
+}
+
 extension Node where Context == HTML.BodyContext {
     static func svg(_ nodes: Node<HTML.SVGContext>...) -> Node {
         .element(named: "svg", nodes: nodes)
@@ -51,11 +71,23 @@ extension Attribute where Context == HTML.PathContext {
         .attribute(named: "fill", value: fill)
     }
     
+    static func fillRule(_ rule: HTMLPathFillRule) -> Attribute {
+        .attribute(named: "fill-rule", value: rule.rawValue)
+    }
+    
     static func stroke(_ stroke: String) -> Attribute {
         .attribute(named: "stroke", value: stroke)
     }
     
     static func strokeWidth(_ width: Double) -> Attribute {
         .attribute(named: "stroke-width", value: String(width))
+    }
+    
+    static func strokeLinecap(_ linecap: HTMLPathStrokeLineCap) -> Attribute {
+        .attribute(named: "stroke-linecap", value: linecap.rawValue)
+    }
+    
+    static func strokeLinejoin(_ linejoin: HTMLPathStrokeLineJoin) -> Attribute {
+        .attribute(named: "stroke-linejoin", value: linejoin.rawValue)
     }
 }
