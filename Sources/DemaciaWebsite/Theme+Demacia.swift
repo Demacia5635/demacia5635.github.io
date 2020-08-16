@@ -38,7 +38,7 @@ extension Theme where Site == DemaciaWebsite {
             HTML(
                 .lang(context.site.language),
                 .head(for: section, on: context.site),
-                .body(.class("has-navbar-fixed-top"),
+                .body(
                       .navbar(for: context, selectedSection: section.id),
                       .section(.class("text container has-text-centered"), .contentBody(section.body)),
                       .footer(for: context.site)
@@ -51,18 +51,8 @@ extension Theme where Site == DemaciaWebsite {
                 .lang(context.site.language),
                 .head(for: item, on: context.site),
                 .body(
-                    .class("item-page"),
-                    .header(for: context, selectedSection: item.sectionID),
-                    .wrapper(
-                        .article(
-                            .div(
-                                .class("content"),
-                                .contentBody(item.body)
-                            ),
-                            .span("Tagged with: "),
-                            .tagList(for: item, on: context.site)
-                        )
-                    ),
+                    .navbar(for: context, selectedSection: item.sectionID),
+                    .section(.class("text container has-text-centered"), .contentBody(item.body)),
                     .footer(for: context.site)
                 )
             )
@@ -73,67 +63,19 @@ extension Theme where Site == DemaciaWebsite {
                 .lang(context.site.language),
                 .head(for: page, on: context.site),
                 .body(
-                    .header(for: context, selectedSection: nil),
-                    .wrapper(.contentBody(page.body)),
+                    .navbar(for: context, selectedSection: nil),
+                    .section(.class("text container has-text-centered"), .contentBody(page.body)),
                     .footer(for: context.site)
                 )
             )
         }
         
         func makeTagListHTML(for page: TagListPage, context: PublishingContext<DemaciaWebsite>) throws -> HTML? {
-            HTML(
-                .lang(context.site.language),
-                .head(for: page, on: context.site),
-                .body(
-                    .header(for: context, selectedSection: nil),
-                    .wrapper(
-                        .h1("Browse all tags"),
-                        .ul(
-                            .class("all-tags"),
-                            .forEach(page.tags.sorted()) { tag in
-                                .li(
-                                    .class("tag"),
-                                    .a(
-                                        .href(context.site.path(for: tag)),
-                                        .text(tag.string)
-                                    )
-                                )
-                            }
-                        )
-                    ),
-                    .footer(for: context.site)
-                )
-            )
+            nil
         }
         
         func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<DemaciaWebsite>) throws -> HTML? {
-            HTML(
-                .lang(context.site.language),
-                .head(for: page, on: context.site),
-                .body(
-                    .header(for: context, selectedSection: nil),
-                    .wrapper(
-                        .h1(
-                            "Tagged with ",
-                            .span(.class("tag"), .text(page.tag.string))
-                        ),
-                        .a(
-                            .class("browse-all"),
-                            .text("Browse all tags"),
-                            .href(context.site.tagListPath)
-                        ),
-                        .itemList(
-                            for: context.items(
-                                taggedWith: page.tag,
-                                sortedBy: \.date,
-                                order: .descending
-                            ),
-                            on: context.site
-                        )
-                    ),
-                    .footer(for: context.site)
-                )
-            )
+            nil
         }
     }
 }
@@ -171,7 +113,7 @@ extension Node where Context == HTML.DocumentContext {
             .twitterCardType(location.imagePath == nil ? .summary : .summaryLargeImage),
             .forEach(stylesheetPaths, { .stylesheet($0) }),
             .meta(.name("viewport"), .content("initial-scale=1, viewport-fit=cover")),
-            .base(.href(site.url.absoluteString)),
+//            .base(.href(site.url.absoluteString)),
             .unwrap(site.favicon, { .favicon($0) }),
             .unwrap(location.imagePath ?? site.imagePath, { path in
                 let url = site.url(for: path)
@@ -203,35 +145,7 @@ extension Node where Context == HTML.BodyContext {
              .script(.src("/js/slides.js"))
         )
     }
-    
-    static func wrapper(_ nodes: Node...) -> Node {
-        .div(.class("wrapper"), .group(nodes))
-    }
-    
-    static func header(
-        for context: PublishingContext<DemaciaWebsite>,
-        selectedSection: DemaciaWebsite.SectionID?
-    ) -> Node {
-        let sectionIDs = DemaciaWebsite.SectionID.allCases
-        
-        return .header(
-            .wrapper(
-                .a(.class("site-name"), .href("/"), .text(context.site.name)),
-                .if(sectionIDs.count > 1,
-                    .nav(
-                        .ul(.forEach(sectionIDs) { section in
-                            .li(.a(
-                                .class(section == selectedSection ? "selected" : ""),
-                                .href(context.sections[section].path),
-                                .text(context.sections[section].title)
-                            ))
-                        })
-                    )
-                )
-            )
-        )
-    }
-    
+
     static func navbar(for context: PublishingContext<DemaciaWebsite>, selectedSection: DemaciaWebsite.SectionID?) -> Node {
         let sectionIDs = DemaciaWebsite.SectionID.allCases
         
@@ -271,32 +185,7 @@ extension Node where Context == HTML.BodyContext {
                         .img(.src(fileExt == "png" ? filePath : fileNoExtPath + ".jpg"), .alt(alt))
         )
     }
-    
-    static func itemList(for items: [Item<DemaciaWebsite>], on site: DemaciaWebsite) -> Node {
-        .ul(
-            .class("item-list"),
-            .forEach(items) { item in
-                .li(.article(
-                    .h1(.a(
-                        .href(item.path),
-                        .text(item.title)
-                    )),
-                    .tagList(for: item, on: site),
-                    .p(.text(item.description))
-                ))
-            }
-        )
-    }
-    
-    static func tagList(for item: Item<DemaciaWebsite>, on site: DemaciaWebsite) -> Node {
-        .ul(.class("tag-list"), .forEach(item.tags) { tag in
-            .li(.a(
-                .href(site.path(for: tag)),
-                .text(tag.string)
-            ))
-        })
-    }
-    
+
     static func footer(for site: DemaciaWebsite) -> Node {
         .footer(
             .p("Demacia FRC 2020"),
