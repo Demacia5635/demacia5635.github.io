@@ -1,6 +1,6 @@
 # Sponsorship
 
-![Sponsors](/img/sponsors.png)
+![Sponsors](/img/sponsors.png?width=50)
 
 ## Sponsorship Benefits
 

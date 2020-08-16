@@ -25,6 +25,7 @@ struct DemaciaWebsite: Website {
 
 // This will generate your website using the built-in Foundation theme:
 try DemaciaWebsite().publish(using: [
+    .installPlugin(.prepareImagesForOptimization),
     .addMarkdownFiles(),
     .addSlides(),
     .copyResources(),
