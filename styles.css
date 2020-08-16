@@ -777,6 +777,10 @@ h2 { font-size: 2rem; }
 
 section.text { width: 90%; margin: 0 auto; flex: 1 1 0; }
 
+section.text picture ~ ul { margin: 0 0 1rem; }
+
+section.text picture img { margin: 1rem 0 0; border-radius: 0.2rem; }
+
 footer { text-align: center; color: #fff; background-color: #522f9c; margin-top: 3rem; padding: 3rem 1.5rem; }
 
 footer a { color: #fff; }
