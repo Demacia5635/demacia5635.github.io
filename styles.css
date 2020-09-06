@@ -725,7 +725,7 @@ h2 { font-size: 2rem; }
 
 .hero .hero-body { position: relative; }
 
-.navbar { display: flex; position: fixed; height: calc(55vw * 0.3); max-height: calc(45rem * 0.3); background-color: rgba(82, 47, 156, 0.8); -webkit-backdrop-filter: blur(3rem); -moz-backdrop-filter: blur(3rem); backdrop-filter: blur(3rem); overflow: hidden; top: 0; left: 0; right: 0; z-index: 30; }
+.navbar { display: flex; position: fixed; height: calc(55vw * 0.3); max-height: calc(45rem * 0.3); background-color: rgba(82, 47, 156, 0.8); -webkit-backdrop-filter: blur(3rem); -moz-backdrop-filter: blur(3rem); backdrop-filter: blur(3rem); overflow: hidden; overflow-x: auto; top: 0; left: 0; right: 0; z-index: 30; }
 
 .navbar.animate-start { height: 100%; max-height: 100%; background-color: #522f9c; -webkit-backdrop-filter: blur(0); -moz-backdrop-filter: blur(0); backdrop-filter: blur(0); }
 
