@@ -44,7 +44,7 @@ For different optimization steps the project uses some additional tools that nee
 
 6. `terser`
 
-   A tool that minifies and mangles each and every JS file in the project (support ES6+).
+   A tool that minifies and mangles each and every JS file in the project (supports ES6+).
 
    It can be installed with NPM using the command: `npm i -g terser`.
 
