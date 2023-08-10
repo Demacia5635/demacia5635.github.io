@@ -1,0 +1,234 @@
+@charset "utf-8"
+
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght,CASL,CRSV@300..800,0..1,1&display=swap')
+
+$purple: #522f9c
+$text: #161616
+$white: #fff
+
+$family-sans-serif: "Recursive", sans-serif
+$primary: $purple
+$navbar-item-color: darken($white, 20%)
+$navbar-item-hover-color: $white
+$navbar-item-active-color: $white
+
+@import "bulma/utilities/_all"
+@import "bulma/base/_all"
+@import "bulma/helpers/_all"
+
+@import "slides"
+
+body
+    display: flex
+    min-height: 100vh
+    font-variation-settings: "wght" 400, "CASL" 0, "slnt" 0, "MONO" 0, "CRSV" 1
+    padding-top: calc(55vw * 0.3)
+    flex-direction: column
+
+h1,
+h2,
+.title
+    color: $primary
+    font-variation-settings: "wght" 500, "CASL" 1, "slnt" 0, "MONO" 0, "CRSV" 1
+
+h1
+    font-size: 3rem
+
+h2
+    font-size: 2rem
+
+.hero .hero-body
+    position: relative
+
+.navbar
+    display: flex
+    position: fixed
+    height: calc(55vw * 0.3)
+    max-height: calc(45rem * 0.3)
+    background-color: rgba($primary, 0.8)
+    -webkit-backdrop-filter: blur(3rem)
+    -moz-backdrop-filter: blur(3rem)
+    backdrop-filter: blur(3rem)
+    overflow: hidden
+    overflow-x: auto
+
+    top: 0
+    left: 0
+    right: 0
+
+    z-index: 30
+
+    &.animate-start
+        height: 100%
+        max-height: 100%
+        background-color: rgba($primary, 1)
+        -webkit-backdrop-filter: blur(0)
+        -moz-backdrop-filter: blur(0)
+        backdrop-filter: blur(0)
+
+        .navbar-menu
+            margin-top: calc(-100vh - 2rem)
+
+        .logo-outer
+            top: 50%
+            left: 50%
+            transform: scale(1) translateX(-50%) translateY(-50%)
+
+            figure
+                width: 40vh
+                height: 40vh
+
+            h1
+                font-size: 8vh
+
+            h2
+                font-size: 5vh
+
+    &.animate
+        transition: 2s all
+
+        .logo-outer
+            transition: 2s all
+
+            figure,
+            h1,
+            h2
+                transition: 2s all
+
+        .navbar-menu
+            transition: 2s all
+
+    &.fast
+        transition: 1s all
+
+        .logo-outer
+            transition: 1s all
+
+            figure,
+            h1,
+            h2
+                transition: 1s all
+
+        .navbar-menu
+            transition: 1s all
+
+    .logo-outer
+        position: absolute
+        top: 1.5vw
+        left: 1.5vw
+        left: calc(1.5vw + env(safe-area-inset-left))
+        transform: scale(0.3) translateX(0) translateY(0)
+        transform-origin: top left
+        flex-direction: column
+        z-index: 1
+
+        figure
+            width: 50vw
+            height: 50vw
+            max-width: 40rem
+            max-height: 40rem
+
+            picture
+                img
+                    height: 100%
+
+        h1,
+        h2
+            color: $white
+            white-space: nowrap
+
+        h1
+            font-size: 10vw
+
+        h2
+            font-size: 5vw
+
+    .navbar-menu
+        display: flex
+        margin-top: 0
+        margin-left: calc(1.5vw + 50vw * 0.3 + 0.75rem)
+        margin-left: calc(1.5vw + env(safe-area-inset-left) + 50vw * 0.3 + 0.75rem)
+        align-items: center
+        margin-right: auto
+        justify-content: flex-start
+        flex-grow: 1
+        flex-shrink: 0
+
+        .navbar-item
+            position: relative
+            color: $navbar-item-color
+            line-height: 1.5
+            margin: 0 0.75rem
+            font-variation-settings: "wght" 400
+            flex-grow: 0
+            flex-shrink: 0
+            cursor: pointer
+            transition: color 0.3s
+
+            &:hover
+                color: $navbar-item-hover-color
+                font-variation-settings: "wght" 800, 'CASL' 1
+
+            &.is-active
+                color: $navbar-item-active-color
+                font-variation-settings: "wght" 800, 'CASL' 1
+
+section.text
+    width: 90%
+    margin: 0 auto
+    flex: 1 1 0
+
+    picture
+        & ~ ul
+            margin: 0 0 1rem
+
+        img
+            margin: 1rem 0 0
+            border-radius: 0.2rem
+
+footer
+    text-align: center
+    color: $white
+    background-color: $primary
+    margin-top: 3rem
+    padding: 3rem 1.5rem
+
+    a
+        color: $white
+
+    .social-media
+        margin-top: 1rem
+
+        svg
+            width: 2rem
+            height: 2rem
+            margin: 0 0.5rem
+
+@media screen and ( min-width: 768px )
+    body
+        // Abusing the fact that CSS is case insensitive whereas SASS isn't
+        padding-top: MIN(calc(55vw * 0.2), calc(45rem * 0.2))
+
+    .navbar
+        height: calc(55vw * 0.2)
+        max-height: calc(45rem * 0.2)
+
+        .logo-outer
+            top: 1vw
+            transform: scale(0.2) translateX(0) translateY(0)
+
+        .navbar-menu
+            margin-left: calc(1.5vw + 50vw * 0.2 + 0.75rem)
+            margin-left: calc(1.5vw + env(safe-area-inset-left) + 50vw * 0.2 + 0.75rem)
+
+    section.text
+        max-width: 50vw
+
+@media screen and ( min-width: 1440px )
+    .navbar
+        .logo-outer
+            top: 0.8rem
+
+        .navbar-menu
+            margin-left: calc(1.5vw + 40rem * 0.2 + 0.75rem)
+            margin-left: calc(1.5vw + env(safe-area-inset-left) + 40rem * 0.2 + 0.75rem)
