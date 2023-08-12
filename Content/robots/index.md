@@ -1,5 +1,12 @@
 # Our Robots
 
+![A picture of the Ozai robot](/img/robots/2022.jpg?width=100)
+
+## 2022 - OZAI
+
+- Can pick up balls from the field and shoot them to the low and high Hub
+- Can climb to the high Rung
+
 ![A picture of the Icarus robot](/img/robots/2020.jpg?width=100)
 
 ## 2020 - ICAROS
