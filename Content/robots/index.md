@@ -1,11 +1,18 @@
 # Our Robots
 
+![A picture of the Moti robot](/img/robots/2023.jpg?width=100)
+
+## 2023 - MOTI THE GIRAFFE
+
+- Can take cubes and cones from the human player and places them on the mid and low row
+- Can balance on the charge station
+
 ![A picture of the Ozai robot](/img/robots/2022.jpg?width=100)
 
 ## 2022 - OZAI
 
-- Can pick up balls from the field and shoot them to the low and high Hub
-- Can climb to the high Rung
+- Can pick up balls from the field and shoot them to the low and high hub
+- Can climb to the high rung
 
 ![A picture of the Icarus robot](/img/robots/2020.jpg?width=100)
 
