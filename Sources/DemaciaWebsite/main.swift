@@ -20,7 +20,7 @@ struct DemaciaWebsite: Website {
     var description = "The Demacia#5635 FRC team website"
     var language: Language { .english }
     var imagePath: Path? { "logos/logo.png" }
-    var favicon: Favicon? { .init(path: "favicon.png") }
+    var favicon: Favicon? { .init(path: "favicon.jpg") }
 }
 
 // This will generate your website using the built-in Foundation theme:
